@@ -1,6 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Link, NavLink } from 'react-router-dom';
+import { AuthContext } from '../../../Povider/AuthProvider';
 
 const Navbar = () => {
+    const {user} = useContext(AuthContext);
+    const links = <>
+        <li><a>Home</a></li>
+        <li><a>About</a></li>
+        {
+            user && 
+            <NavLink to='/dashboard'><li><a>Dashboard</a></li></NavLink>
+        }
+    </>
     return (
         <div className="navbar bg-base-100">
             <div className="navbar-start">
@@ -22,20 +33,20 @@ const Navbar = () => {
                     <ul
                         tabIndex={0}
                         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-                        <li><a>Item 1</a></li>
-                        <li><a>Item 3</a></li>
+                        {links}
                     </ul>
                 </div>
-                <a className="btn btn-ghost text-xl">daisyUI</a>
+                <a className="btn btn-ghost text-xl">Do-Did-Done</a>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
-                    <li><a>Item 1</a></li>
-                    <li><a>Item 3</a></li>
+                   {links}
                 </ul>
             </div>
-            <div className="navbar-end">
-                <a className="btn">Button</a>
+            <div className="navbar-end *:ml-2">
+                <Link to='/sign-up'><a className="btn">Sign Up</a></Link>
+               <Link to='/sign-in'><a className="btn">Sign In</a></Link>
+                
             </div>
         </div>
     );

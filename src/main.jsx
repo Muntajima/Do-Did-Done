@@ -6,9 +6,15 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import { router } from './router/router';
+import AuthProvider from './Povider/AuthProvider';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <div className='PT-Sans'>
+        <RouterProvider router={router} />
+      </div>
+    </AuthProvider>
+
   </StrictMode>,
 )
